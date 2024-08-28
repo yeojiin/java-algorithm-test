@@ -14,6 +14,7 @@ public class step_10 {
         for(int i : solution(str, c)) {
             System.out.print(i + " ");
         }
+
     }
 
     private static int[] solution(String str, char c) {
@@ -21,7 +22,9 @@ public class step_10 {
         char[] chars = str.toCharArray();
         int len = str.length();
 
-        for(int i = 0; i < answer.length; i++) {
+        // 정방향으로 거리 구하기
+        // c와 일치하면 0으로 초기화 후 거리를 늘려간다.
+        for(int i = 0; i < str.length(); i++) {
             if(chars[i] == c) {
                 len = 0;
             } else {
@@ -30,18 +33,18 @@ public class step_10 {
             answer[i] = len;
         }
 
+        // 역순으로 거리 구하고 정방향과 비교해 적은 거리 담기
+        // c와 일치하면 0으로 초기화 후 거린다.
         len = str.length();
-
-        for(int i = str.length() - 1; i >= 0; i--) {
-            if(chars[i] == c) {
+        for(int r = str.length() - 1; r >= 0; r--) {
+            if(chars[r] == c) {
                 len = 0;
-                answer[i] = len;
+                answer[r] = len;
             } else {
                 len++;
-                answer[i] = Math.min(answer[i], len);
+                answer[r] = Math.min(answer[r], len);
             }
         }
-
         return answer;
     }
 
