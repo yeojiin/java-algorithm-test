@@ -13,6 +13,9 @@ public class step_04 {
 
         List<String> revseredList = new ArrayList<>();
         for(int i = 0; i < cnt; i++) {
+            // nextLine은 개행문자를 기준으로 함
+            // cnt에서 엔터를 읽어오기 때문에 공백을 읽고 시작함
+            // next()를 써야함
             StringBuilder sb = new StringBuilder(sc.next());
             revseredList.add(sb.reverse().toString());
         }
