@@ -1,7 +1,6 @@
-package com.study.java.algorithm.section01;
+package com.study.java.algorithm.section_01;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
