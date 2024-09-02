@@ -1,8 +1,7 @@
 package com.study.java.algorithm.section_02;
 
 
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.*;
 
 public class step_09 {
 
@@ -13,35 +12,50 @@ public class step_09 {
         Scanner sc = new Scanner(System.in);
         int num = sc.nextInt();
 
-
         int[][] arr = new int[num][num];
         int[] rowSumArr = new int[num];
         int[] colSumArr = new int[num];
-        for(int i = 0; i < num; i++) {
-            int rowSum = 0;
 
-            for(int j = 0; j < num; j++){
+        int rDigonalSum = 0;
+        int lDigonalSum = 0;
+
+        int ri = 0;
+        int lj = 4;
+
+
+        for (int i = 0; i < num; i++) {
+
+            for (int j = 0; j < num; j++) {
                 arr[i][j] = sc.nextInt();
 
                 rowSumArr[i] += arr[i][j];
                 colSumArr[j] += arr[i][j];
+
+                // 오른쪽 대각선
+                if (i - j == 0) {
+                    rDigonalSum += arr[i][j];
+                }
+
+                // 왼쪽 대각선
+                if (ri == i && lj == j) {
+                    lDigonalSum += arr[i][j];
+                    ri++;
+                    lj--;
+                }
             }
-            rowSumArr[i] = rowSum;
         }
 
-        int max = Arrays.stream(rowSumArr).max().orElse(0);
+        // 모든 합 담기
+        int[] sumArr = new int[num * 2 + 2];
+        for (int i = 0; i < num; i++) {
+            sumArr[i] = rowSumArr[i];
+            sumArr[i + num] = colSumArr[i];
+        }
+        sumArr[num * 2] = rDigonalSum;
+        sumArr[num * 2 + 1] = lDigonalSum;
+
+
+        int max = Arrays.stream(sumArr).max().orElse(0);
         System.out.print(max);
     }
-
-//    						                                    134
-//
-//                                    10	13	10	12	15		60
-//                                    12	39	30	23	11		115
-//                                    11	25	50	53	15		154
-//                                    19	27	29	37	27		139
-//                                    19	13	30	13	19		94
-//
-//                                    71	117	149	138	87		155
-
-
 }
